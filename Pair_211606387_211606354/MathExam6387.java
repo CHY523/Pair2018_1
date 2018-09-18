@@ -7,19 +7,19 @@ import java.util.Stack;
 
 import java.text.SimpleDateFormat;
 
-//import java.util.Scanner;
+import java.util.Scanner;
 
 
 public class MathExam6387 {
 
-//	private static Scanner in;
-	private static int x,y,z,f,h;
+	private static Scanner in;
+	private static int x,y,z,f,h,g;
 	private static String[] str ;
 	private static String rem;
 
 	public static void main(String args[]) throws FileNotFoundException, InterruptedException {
 		// TODO Auto-generated method stub
-//		int n ;
+		int n ;
 //		in = new Scanner(System.in);
 //		n = in.nextInt();
 //		g = in.nextInt();
@@ -43,16 +43,16 @@ public class MathExam6387 {
 			f = (int)(Math.random()*2);
 			// 判断加法和减法 0为加法
 			if ( f == 0) {
-				System.out.println("(" + (i+1) + ")" +" " + x + "+" + y + " " + "=" + " ");
+				System.out.println("(" + (i+1) + ")" +" " + x + "+" + y + " = " );
 				str[i] = "(" + (i+1) + ")" +" " + x + "+" + y + " " + "=" + " " + (x+y);
 			}
 			else {
 				if (x-y < 0) {
-					System.out.println("(" + (i+1) + ")" +" " + y + "-" + x + " " + "=" + " ");
+					System.out.println("(" + (i+1) + ")" +" " + y + "-" + x + " = " );
 					str[i] = "(" + (i+1) + ")" +" " + y + "-" + x + " " + "=" + " " + (y-x);
 				}
 				else {
-					System.out.println("(" + (i+1) + ")" +" " + x + "-" + y + " " + "=" + " ");
+					System.out.println("(" + (i+1) + ")" +" " + x + "-" + y + " = " );
 					str[i] = "(" + (i+1) + ")" +" " + x + "-" + y + " " + "=" + " " + (x-y);
 				}
 			}
@@ -75,17 +75,17 @@ public class MathExam6387 {
 			f = (int)(Math.random()*2);
 			
 			if ( f == 0 && y!=0 && x!=0) {
-				System.out.println("(" + (i+1) + ")" +" " + x + "*" + y + " " + "=" + " ");
-				str[i] = "(" + (i+1) + ")" +" " + x + "*" + y + " " + "=" + " " + (x*y);
+				System.out.println("(" + (i+1) + ")" +" " + x + " × " + y + " = " );
+				str[i] = "(" + (i+1) + ")" +" " + x + " × " + y + " " + "=" + " " + (x*y);
 			}
 			else {
 				if (x-y < 0 ) {
-					System.out.println("(" + (i+1) + ")" +" " + y + "/" + x + " " + "=" + " ");
-					str[i] = "(" + (i+1) + ")" +" " + y + "/" + x + " " + "=" + " " + (y/x) + JudgementRemainder(y,x);
+					System.out.println("(" + (i+1) + ")" +" " + y + " ÷ " + x + " = " );
+					str[i] = "(" + (i+1) + ")" +" " + y + " ÷ " + x + " " + "=" + " " + (y/x) + JudgementRemainder(y,x);
 				}
 				else {
-					System.out.println("(" + (i+1) + ")" +" " + x + "/" + y + " " + "=" + " ");
-					str[i] = "(" + (i+1) + ")" +" " + x + "/" + y + " " + "=" + " " + (x/y) + JudgementRemainder(x,y);
+					System.out.println("(" + (i+1) + ")" +" " + x + " ÷ " + y + " = " );
+					str[i] = "(" + (i+1) + ")" +" " + x + " ÷ " + y + " " + "=" + " " + (x/y) + JudgementRemainder(x,y);
 				}
 			}
 		}
@@ -114,9 +114,9 @@ public class MathExam6387 {
 			String y1 = String.valueOf(y);
 			String z1 = String.valueOf(z);
 			
-			String [] strArr = { x1,y1,z1,SymbolicJudgment(f),SymbolicJudgment(h) };
-			System.out.println("(" + (i+1) + ")" +" " + x1 + SymbolicJudgment(f) + y1 + SymbolicJudgment(h) + z1 + " " + "= ");
-			str[i] = "(" + (i+1) + ")" +" " + x1 + SymbolicJudgment(f) + y1 + SymbolicJudgment(h) + z1 + " " + "= " + ReversePolish(strArr);
+			String [] strArr = { x1,y1,z1,SymbolicJudgment(h),SymbolicJudgment(f) };
+			System.out.println("(" + (i+1) + ")" +" " + z1 + " " + SymbolicJudgment(h) + " " + y1 + " " + SymbolicJudgment(f) + " " + x1 + " = " );
+			str[i] = "(" + (i+1) + ")" +" " + z1 +" " + SymbolicJudgment(h) +" " + y1 +" " + SymbolicJudgment(f) +" " + x1 + " = "  + ReversePolish(strArr);
 		}
 		System.out.println("--------标准答案---------");
 		//输出答案
@@ -131,10 +131,10 @@ public class MathExam6387 {
 		if ( g == 1 ) {
 			GradeOne(n);
 		}
-		if ( g == 2) {
+		else if ( g == 2) {
 			GradeTwo(n);
 		}
-		if ( g == 3) {
+		else if ( g == 3) {
 			GradeThree(n);;
 		}
 		else {
@@ -157,10 +157,10 @@ public class MathExam6387 {
 	//判断符号
 	 private static String SymbolicJudgment(int f) {
 		// TODO 自动生成的方法存根
-		 if (f ==0) {
+		 if (f == 0) {
 			rem = "+";
 		}
-		 else {
+		 else{
 			rem = "-";
 		}
 		return rem;
@@ -175,21 +175,22 @@ public class MathExam6387 {
         	//如果是数字,放入栈中
             if(!str.contains(s)){
                 stack.push(s);
-            }else{
+            }
+            else{
                 int a = Integer.valueOf(stack.pop());
                 int b = Integer.valueOf(stack.pop());
                 switch(s){
                 case "+" :
-                    stack.push(String.valueOf(a+b));
+                	stack.push(String.valueOf(a+b));
                     break;
                 case "-" :
-                    stack.push(String.valueOf(b-a));
+                	stack.push(String.valueOf(a-b));
                     break ;
                 case "*" :
                     stack.push(String.valueOf(a*b));
                     break;
                 case "/" :
-                    stack.push(String.valueOf(b/a));
+                    stack.push(String.valueOf(a/b));
                     break ;
                 }
             }
